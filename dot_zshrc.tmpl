@@ -16,5 +16,9 @@ compinit
 # set default editor
 export EDITOR=nvim
 
+# enable ls colors
+source <(dircolors -b)
+alias ls="ls --color=auto"
+
 # use starship prompt
 eval "$(starship init zsh)"
