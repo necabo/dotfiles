@@ -2,6 +2,7 @@ local Util = require("lazyvim.util")
 
 return {
   { "echasnovski/mini.bufremove", enabled = false },
+  { "folke/flash.nvim",           enabled = false },
   {
     "nvim-telescope/telescope.nvim",
     opts = {

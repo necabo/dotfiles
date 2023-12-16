@@ -1,16 +1,17 @@
 return {
   {
     "L3MON4D3/LuaSnip",
-    -- stylua: ignore
     keys = {
       {
         "<c-j>",
         function()
           return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "" -- "" translates to <NOP>
         end,
-        expr = true, silent = true, mode = "i",
+        expr = true,
+        silent = true,
+        mode = "i",
       },
-      { "<C-j>", function() require("luasnip").jump(1) end, mode = "s" },
+      { "<C-j>", function() require("luasnip").jump(1) end,  mode = "s" },
       { "<C-k>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
     },
   },
