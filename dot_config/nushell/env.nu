@@ -26,6 +26,7 @@ $env.NU_PLUGIN_DIRS = [
 ]
 
 $env.EDITOR = 'nvim'
+$env.TMUX_AUTO_EXIT = true
 
 # setup starship prompt
 mkdir ~/.cache/starship

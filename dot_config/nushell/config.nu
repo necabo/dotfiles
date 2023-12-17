@@ -758,6 +758,18 @@ $env.config = {
     ]
 }
 
+def autostart-tmux [] {
+  if 'WAYLAND_DISPLAY' in $env and 'TMUX' not-in $env {
+    tmux
+
+    if ($env.TMUX_AUTO_EXIT? | default false) {
+      exit
+    }
+  }
+}
+
+autostart-tmux
+
 alias l = ls -a
 alias vim = nvim
 
