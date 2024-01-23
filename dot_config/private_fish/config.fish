@@ -12,6 +12,7 @@ if status is-interactive
   end
 
   set -gx EDITOR nvim
+  set -gx LESS -R
   set -gx PAGER less
 
   abbr -a l 'ls -AlGh'
