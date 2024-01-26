@@ -1,8 +1,8 @@
 local M = {}
 
-function M.enable_python_tools(ctx)
+function M.enable_python_tools(self)
   return not vim.tbl_isempty(vim.fs.find(".enable-python-tools", {
-    path = ctx.dirname,
+    path = self.dirname,
     upward = true,
   }))
 end
