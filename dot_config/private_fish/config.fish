@@ -8,7 +8,7 @@ fish_add_path ~/bin
 fish_add_path ~/.cargo/bin
 
 if status is-interactive
-  if not set -q TMUX
+  if [ "$TERM_PROGRAM" != "WezTerm" ] && not set -q TMUX
     exec tmux
   end
 
