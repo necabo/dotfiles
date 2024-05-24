@@ -4,6 +4,7 @@ if status is-login
   end
 end
 
+fish_add_path ~/bin
 fish_add_path ~/.cargo/bin
 
 if status is-interactive
