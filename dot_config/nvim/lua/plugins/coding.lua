@@ -1,26 +1,49 @@
 return {
   {
-    "L3MON4D3/LuaSnip",
-    opts = {
-      history = true,
-      region_check_events = "InsertEnter",
-      delete_check_events = "TextChanged",
+    "garymjr/nvim-snippets",
+    keys = {
+      {
+        "<c-j>",
+        function()
+          if vim.snippet.active({ direction = 1 }) then
+            vim.schedule(function()
+              vim.snippet.jump(1)
+            end)
+            return
+          end
+          return "<c-j>"
+        end,
+        expr = true,
+        silent = true,
+        mode = "i",
+      },
+      {
+        "<c-j>",
+        function()
+          vim.schedule(function()
+            vim.snippet.jump(1)
+          end)
+        end,
+        expr = true,
+        silent = true,
+        mode = "s",
+      },
+      {
+        "<c-k>",
+        function()
+          if vim.snippet.active({ direction = -1 }) then
+            vim.schedule(function()
+              vim.snippet.jump(-1)
+            end)
+            return
+          end
+          return "<c-k>"
+        end,
+        expr = true,
+        silent = true,
+        mode = { "i", "s" },
+      },
     },
-    keys = function()
-      return {
-        {
-          "<c-j>",
-          function()
-            return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "" -- "" translates to <NOP>
-          end,
-          expr = true,
-          silent = true,
-          mode = "i",
-        },
-        { "<C-j>", function() require("luasnip").jump(1) end,  mode = "s", },
-        { "<C-k>", function() require("luasnip").jump(-1) end, mode = { "i", "s" }, },
-      }
-    end,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -33,7 +56,15 @@ return {
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<C-s>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-y>"] = function(fallback)
+          if cmp.visible() then
+            LazyVim.create_undo()
+            if cmp.confirm({ select = true }) then
+              return
+            end
+          end
+          return fallback()
+        end,
       })
     end,
   },
