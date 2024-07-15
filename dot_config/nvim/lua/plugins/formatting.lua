@@ -5,13 +5,12 @@ return {
       local utils = require("utils")
 
       opts.formatters_by_ft = {
-        python = { "ruff_fix", "black" },
+        python = { "ruff_fix", "ruff_format" },
       }
       opts.formatters.ruff_fix = {
         condition = utils.enable_python_tools,
       }
-      opts.formatters.black = {
-        prepend_args = { "--preview" },
+      opts.formatters.ruff_format = {
         condition = utils.enable_python_tools,
       }
 

@@ -25,7 +25,7 @@ return {
         ocamllsp = {},
         dartls = {},
         nushell = {},
-        typst_lsp = {}
+        typst_lsp = {},
       },
     },
     init = function()

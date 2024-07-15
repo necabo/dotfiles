@@ -6,3 +6,5 @@ vim.opt.mouse = ""
 
 -- don't sync with system clipboard
 vim.opt.clipboard = ""
+
+vim.g.lazyvim_picker = "fzf"
