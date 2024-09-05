@@ -2,6 +2,7 @@ if status is-login
   if test -z "$WAYLAND_DISPLAY" -a "$XDG_VTNR" = 1
     exec sway
   end
+  set -Ux SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
 end
 
 fish_add_path ~/bin
