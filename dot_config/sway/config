@@ -123,6 +123,10 @@ bindsym XF86AudioPlay exec playerctl --ignore-player firefox play-pause
 bindsym XF86AudioPrev exec playerctl --ignore-player firefox previous
 bindsym XF86AudioNext exec playerctl --ignore-player firefox next
 
+bindsym Mod1+space exec makoctl dismiss
+bindsym Mod1+Shift+space exec makoctl dismiss --all
+bindsym Mod1+grave exec makoctl restore
+
 bar {
     position top
     status_command i3status-rs
