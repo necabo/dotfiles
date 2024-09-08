@@ -1,0 +1,44 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.py]
+indent_style = space
+indent_size = 4
+
+[Makefile]
+indent_style = tab
+
+[justfile]
+indent_style = tab
+
+[*.{c,h,cpp,hpp}]
+indent_style = space
+indent_size = 4
+
+[*.json]
+indent_style = space
+indent_size = 2
+
+[*.lua]
+indent_size = space
+indent_size = 2
+
+[*.qml]
+indent_style = space
+indent_size = 4
+
+[*.slint]
+indent_style = space
+indent_size = 4
+
+[*.dart]
+indent_style = space
+indent_size = 2
+
+[**/git/config{,.tmpl}]
+indent_style = tab
