@@ -127,6 +127,9 @@ bindsym Mod1+space exec makoctl dismiss
 bindsym Mod1+Shift+space exec makoctl dismiss --all
 bindsym Mod1+grave exec makoctl restore
 
+for_window [app_id="floating"] floating enable
+for_window [app_id="com.saivert.pwvucontrol"] floating enable
+
 bar {
     position top
     status_command i3status-rs
