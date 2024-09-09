@@ -19,7 +19,7 @@ format = " $icon $barchart $utilization "
 
 [[block]]
 block = "memory"
-format = " $icon RAM: $mem_used.eng(hide_unit:true, hide_prefix:true, w:1)/$mem_total.eng(p:Mi)"
+format = " $icon RAM: $mem_used.eng(hide_unit:true, hide_prefix:true, w:1)/$mem_total.eng(p:Mi) "
 
 [[block]]
 block = "net"
