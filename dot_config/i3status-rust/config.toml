@@ -24,6 +24,9 @@ format = " $icon RAM: $mem_used.eng(hide_unit:true, hide_prefix:true, w:1)/$mem_
 [[block]]
 block = "net"
 format = " $icon {$signal_strength $ssid|} "
+[[block.click]]
+button = "left"
+cmd = "alacritty --class floating --title 'NetworkManager TUI' --command nmtui"
 
 [[block]]
 block = "sound"
