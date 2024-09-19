@@ -52,38 +52,38 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+z focus child
 
-set $ws1 "1"
+set $ws1 "1:  "
 set $ws2 "2"
 set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
+set $ws4 "4:  "
+set $ws5 "5:  "
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 "10:  "
 
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -91,6 +91,8 @@ bindsym $mod+Shift+r restart
 
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+p exec i3lock
+# autolock after inactivity/on suspend
+exec --no-startup-id xss-lock i3lock
 
 mode "resize" {
         bindsym h resize shrink width 10 px or 10 ppt
@@ -112,10 +114,19 @@ bindsym $mod+r mode "resize"
 for_window [class="floating"] floating enable
 for_window [class="pwvucontrol"] floating enable
 
+assign [class="Slack"] $ws5
+assign [class="KeePassXC"] $ws10
+
 bar {
         position top
         status_command i3status-rs
+        tray_output primary
+
+        strip_workspace_numbers yes
+        workspace_min_width 50
 }
+
+default_border pixel 1
 
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
@@ -127,6 +138,10 @@ bindsym Mod1+space exec --no-startup-id dunstctl close
 bindsym Mod1+Shift+space exec --no-startup-id dunstctl close-all
 bindsym Mod1+grave exec --no-startup-id dunstctl history-pop
 
+# Enable numlock
+exec --no-startup-id numlockx on
+
 # Autostart
-exec --no-startup-id nm-applet
 exec --no-startup-id dunst
+exec --no-startup-id slack
+exec --no-startup-id keepassxc
