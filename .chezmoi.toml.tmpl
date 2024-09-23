@@ -1,3 +1,9 @@
+{{- $choices := list "home" "work" -}}
+{{- $env := promptChoiceOnce . "env" "Which environment are you working in" $choices -}}
+
+[data]
+env = {{ $env | quote }}
+
 [data.git]
 email = {{ promptStringOnce . "git.email" "git author email" | quote }}
 name = {{ promptStringOnce . "git.name" "git author name" | quote }}

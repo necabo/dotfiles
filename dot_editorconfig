@@ -40,5 +40,5 @@ indent_size = 4
 indent_style = space
 indent_size = 2
 
-[**/git/config{,.tmpl}]
+[**/git/{config{,.tmpl},work}]
 indent_style = tab

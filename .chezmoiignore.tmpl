@@ -1,3 +1,6 @@
 LICENSE
 README.md
 lazy-lock.json
+{{- if ne .env "work" }}
+.config/git/work
+{{ end -}}
