@@ -133,7 +133,9 @@ for_window [app_id="com.saivert.pwvucontrol"] floating enable
 
 bar {
     position top
+    strip_workspace_numbers yes
     status_command i3status-rs
+    workspace_min_width 50
 }
 
 default_border pixel 1
