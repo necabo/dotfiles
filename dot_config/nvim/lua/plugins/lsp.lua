@@ -26,6 +26,8 @@ return {
         dartls = {},
         nushell = {},
         typst_lsp = {},
+        yamlls = {},
+        taplo = {},
       },
     },
     init = function()
