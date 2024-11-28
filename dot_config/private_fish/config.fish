@@ -16,6 +16,7 @@ if status is-interactive
   set -gx EDITOR nvim
   set -gx LESS -R
   set -gx PAGER less
+  set -gx GPG_TTY (tty)
 
   abbr -a l 'ls -AlGh'
   abbr -a vim 'nvim'
