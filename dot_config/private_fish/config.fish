@@ -19,6 +19,7 @@ if status is-interactive
 
   abbr -a l 'ls -AlGh'
   abbr -a vim 'nvim'
+  abbr -a yay 'paru'
 
   starship init fish | source
 end
