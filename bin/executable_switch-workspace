@@ -1,0 +1,88 @@
+#!/usr/bin/env python
+
+import subprocess
+import json
+import dataclasses
+from typing import Self, TypedDict
+
+
+def main():
+    workspaces = Workspaces.load()
+
+    workspaces.swap_workspaces()
+    workspaces.refocus_initial_workspace()
+
+
+class JsonWorkspace(TypedDict):
+    num: int
+    output: str
+    focused: bool
+
+
+@dataclasses.dataclass
+class Workspace:
+    num: int
+    output: str
+    focused: bool
+
+    def move_to(self, output: str):
+        # print(f"swaymsg workspace number {self.num}")
+        # print(f"swaymsg move workspace to output {output}")
+        # run_command(["swaymsg", f"workspace number {self.num}"])
+        # run_command(["swaymsg", f"move workspace to output {output}"])
+        run_command(["swaymsg", "workspace", "number", str(self.num)])
+        run_command(["swaymsg", "move", "workspace", "to", "output", output])
+
+
+@dataclasses.dataclass
+class Workspaces:
+    inner: list[Workspace]
+    outputs: tuple[str, ...]
+
+    @classmethod
+    def load(cls) -> Self:
+        raw_workspaces = subprocess.check_output(
+            ["swaymsg", "--type", "get_workspaces", "--raw"]
+        )
+        json_workspaces: list[JsonWorkspace] = json.loads(raw_workspaces)
+        workspaces = [
+            Workspace(
+                num=workspace["num"],
+                output=workspace["output"],
+                focused=workspace["focused"],
+            )
+            for workspace in json_workspaces
+        ]
+        outputs = {workspace.output for workspace in workspaces}
+        outputs_len = len(outputs)
+        if outputs_len != 2:
+            raise Exception(
+                f"This script only works for exactly 2 outputs, found {outputs_len}."
+            )
+
+        return cls(inner=workspaces, outputs=tuple(outputs))
+
+    @property
+    def focused_workspace(self) -> Workspace:
+        return next(filter(lambda workspace: workspace.focused, self.inner))
+
+    def other_output(self, output: str) -> str:
+        return self.outputs[0] if output == self.outputs[1] else self.outputs[1]
+
+    def swap_workspaces(self):
+        for workspace in self.inner:
+            workspace.move_to(self.other_output(workspace.output))
+
+    def refocus_initial_workspace(self):
+        # print(f"swaymsg workspace number {self.focused_workspace.num}")
+        # run_command(["swaymsg", f"workspace number {self.focused_workspace.num}"])
+        run_command(["swaymsg", "workspace", "number", str(self.focused_workspace.num)])
+
+
+def run_command(args: list[str]):
+    result = subprocess.run(args)
+    result.check_returncode()
+
+
+if __name__ == "__main__":
+    main()
