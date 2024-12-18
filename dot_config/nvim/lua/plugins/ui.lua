@@ -37,7 +37,7 @@ return {
             {
               function() return require("noice").api.status.mode.get() end,
               cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-              color = LazyVim.ui.fg("Constant"),
+              color = { fg = Snacks.util.color("Constant") },
             },
             {
               "diff",
@@ -50,7 +50,7 @@ return {
             {
               require("lazy.status").updates,
               cond = require("lazy.status").has_updates,
-              color = LazyVim.ui.fg("Special"),
+              color = { fg = Snacks.util.color("Special") },
             },
           },
           lualine_y = {
@@ -80,17 +80,6 @@ return {
     end,
   },
   "folke/twilight.nvim",
-  {
-    "folke/zen-mode.nvim",
-    cmd = "ZenMode",
-    opts = {
-      plugins = {
-        gitsigns = { enabled = true },
-        tmux = { enabled = true },
-      },
-    },
-    keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
-  },
   {
     "akinsho/bufferline.nvim",
     enabled = false,

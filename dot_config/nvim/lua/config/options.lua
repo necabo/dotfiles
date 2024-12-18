@@ -8,3 +8,4 @@ vim.opt.mouse = ""
 vim.opt.clipboard = ""
 
 vim.g.lazyvim_picker = "fzf"
+vim.g.lazyvim_cmp = "blink.cmp"
