@@ -37,7 +37,7 @@ return {
       keys[#keys + 1] = { "<c-k>", false, mode = "i" }
       keys[#keys + 1] = { "gH", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" }
       keys[#keys + 1] =
-      { "<c-h>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" }
+        { "<c-h>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" }
       keys[#keys + 1] = { "K", false }
       keys[#keys + 1] = { "gh", vim.lsp.buf.hover, desc = "Hover" }
     end,
