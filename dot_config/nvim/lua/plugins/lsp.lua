@@ -10,26 +10,6 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        pyright = {},
-        rust_analyzer = {},
-        clangd = {},
-        bashls = {},
-        gopls = {},
-        slint_lsp = {
-          root_dir = function(...)
-            return require("lspconfig.util").root_pattern(".git")(...)
-          end,
-        },
-        ocamllsp = {},
-        dartls = {},
-        nushell = {},
-        typst_lsp = {},
-        yamlls = {},
-        taplo = {},
-      },
-    },
     init = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
 
