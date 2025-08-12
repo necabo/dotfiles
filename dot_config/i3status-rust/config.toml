@@ -33,13 +33,16 @@ block = "sound"
 device_kind = "sink"
 [[block.click]]
 button = "left"
+cmd = "cycle-sinks.fish"
+[[block.click]]
+button = "middle"
 cmd = "pwvucontrol"
 
 [[block]]
 block = "sound"
 device_kind = "source"
 [[block.click]]
-button = "left"
+button = "middle"
 cmd = "pwvucontrol"
 
 [[block]]
