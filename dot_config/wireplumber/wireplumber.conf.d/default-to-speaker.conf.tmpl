@@ -1,5 +1,5 @@
-{{ if eq .env "work" -}}
 monitor.alsa.rules = [
+{{- if eq .env "work" -}}
   {
     matches = [
       {
@@ -12,5 +12,18 @@ monitor.alsa.rules = [
       }
     }
   }
-]
+{{- else }}
+  {
+    matches = [
+      {
+        device.name = "alsa_card.pci-0000_0d_00.1"
+      }
+    ]
+    actions = {
+      update-props = {
+        device.profile = "output:hdmi-stereo-extra3"
+      }
+    }
+  }
 {{- end }}
+]
