@@ -174,6 +174,10 @@ bindsym Mod1+grave exec makoctl restore
 for_window [app_id="floating"] floating enable
 for_window [app_id="com.saivert.pwvucontrol"] floating enable
 
+{{ if eq .env "work" -}}
+assign [app_id="Slack"] workspace number 5
+{{- end }}
+# FIXME: this should only be done for non-floating windows
 assign [app_id="org.keepassxc.KeePassXC"] workspace $ws10
 
 bar {
@@ -187,6 +191,9 @@ default_border pixel 1
 
 # Autostart
 exec swaymsg "exec keepassxc"
+{{ if eq .env "work" -}}
+exec swaymsg "exec gio launch /usr/share/applications/slack.desktop"
+{{- end }}
 
 include /etc/sway/config.d/*
 
