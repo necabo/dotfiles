@@ -1,11 +1,11 @@
 return {
   -- disable LSP installer, make sure to have LSPs installed using package manager
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     enabled = false,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     enabled = false,
   },
   {
